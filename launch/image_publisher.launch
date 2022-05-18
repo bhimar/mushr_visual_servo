@@ -1,0 +1,11 @@
+
+<launch>
+	<arg name="im_topic" default="/spoof_car/images" />
+	<arg name="data_dir" default="$(find mushr_visual_servo)/images" />
+
+	<node pkg="mushr_visual_servo" type="image_publisher.py" name="image_publisher" output="screen">
+		<param name="im_topic" value="$(arg im_topic)" />
+		<param name="data_dir" value="$(arg data_dir)" />
+	</node>
+
+</launch>

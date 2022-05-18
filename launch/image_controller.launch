@@ -1,0 +1,12 @@
+
+
+<launch>
+	<arg name="im_topic" default="/spoof_car/images" />
+	<arg name="data_dir" default="$(find mushr_image_controller)/output_images" />
+
+	<node pkg="mushr_image_controller" type="image_controller.py" name="image_controller" output="screen">
+		<param name="im_topic" value="$(arg im_topic)" />
+		<param name="data_dir" value="$(arg data_dir)" />
+	</node>
+
+</launch>
