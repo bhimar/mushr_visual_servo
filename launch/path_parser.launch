@@ -1,0 +1,10 @@
+<launch>
+	<arg name="move_topic" default="/spoof_car/vel_angle" />
+	<arg name="box_topic" default="/spoof_car/box" />
+
+	<node pkg="mushr_visual_servo" type="path_parser.py" name="path_parser" output="screen">
+		<param name="move_topic" value="$(arg move_topic)" />	
+		<param name="box_topic" value="$(arg box_topic)" />
+	</node>
+
+</launch>
