@@ -2,13 +2,15 @@
 
 <launch>
 	<arg name="im_topic" default="/spoof_car/images" />
-	<arg name="data_dir" default="$(find mushr_visual_servo)/output_images" />
+	<arg name="out_dir" default="$(find mushr_visual_servo)/detections" />
 	<arg name="box_topic" default="/spoof_car/box" />
+	<arg name="write_images" default="false" />
 
 	<node pkg="mushr_visual_servo" type="image_detector.py" name="image_detector" output="screen">
 		<param name="im_topic" value="$(arg im_topic)" />
-		<param name="data_dir" value="$(arg data_dir)" />
+		<param name="out_dir" value="$(arg out_dir)" />
 		<param name="box_topic" value="$(arg box_topic)" />
+		<param name="write_images" value="$(arg write_images)" />
 	</node>
 
 </launch>
