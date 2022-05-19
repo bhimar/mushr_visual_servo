@@ -27,7 +27,8 @@ class PathParserNode:
         
         velocity = "0.25"
         if float(y_height) > 500:
-            velocity = "0"
+            velocity = "0.1"
+            angle = "0.3"
 
         vel_angle = velocity + ", " + str(angle)
 
