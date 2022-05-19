@@ -1,0 +1,36 @@
+
+
+<launch>
+	<arg name="im_topic" default="/car/camera/color/image_raw" />
+	<arg name="out_dir" default="$(find mushr_visual_servo)/detections" />
+	<arg name="box_topic" default="/image_detector/box" />
+	<arg name="write_images" default="false" />
+
+	<node pkg="mushr_visual_servo" type="image_detector.py" name="image_detector" output="screen">
+		<param name="im_topic" value="$(arg im_topic)" />
+		<param name="out_dir" value="$(arg out_dir)" />
+		<param name="box_topic" value="$(arg box_topic)" />
+		<param name="write_images" value="$(arg write_images)" />
+	</node>
+
+
+	<arg name="move_topic" default="/path_parser/vel_angle" />
+
+	<node pkg="mushr_visual_servo" type="path_parser.py" name="path_parser" output="screen">
+		<param name="move_topic" value="$(arg move_topic)" />	
+		<param name="box_topic" value="$(arg box_topic)" />
+	</node>
+
+
+	<arg name="control_topic" default="/car/mux/ackermann_cmd_mux/input/navigation" />
+ 	<arg name="init_pose_topic" default="/initialpose" />
+ 	<arg name="plan_file" default="$(find mushr_visual_servo)/plans/figure_8.txt" />
+
+	<node pkg="mushr_visual_servo" type="path_publisher.py" name="path_publisher" output="screen">
+        	<param name="control_topic" value="$(arg control_topic)" />
+        	<param name="init_pose_topic" value="$(arg init_pose_topic)" />
+        	<param name="plan_file" value="$(arg plan_file)" />
+		<param name="move_topic" value="$(arg move_topic)" />
+	</node>
+
+</launch>

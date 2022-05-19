@@ -18,7 +18,7 @@ class PathPublisher:
 	    rospy.init_node("path_publisher")
 	    self.control_topic = rospy.get_param("~control_topic", "/car/mux/ackermann_cmd_mux/input/navigation")
 	    self.init_pose_topic = rospy.get_param("~init_pose_topic", "/initialpose")
-	    self.move_topic = rospy.get_param("~move_topic", "/spoof_car/vel_angle")
+	    self.move_topic = rospy.get_param("~move_topic", "/path_parser/vel_angle")
 
    
 	    self.pub_controls = rospy.Publisher(self.control_topic, AckermannDriveStamped, queue_size=1)
@@ -59,7 +59,7 @@ class PathPublisher:
 	    cmd = c.data.split(",")
 	    assert len(cmd) == 2
 	    v, delta = float(cmd[0]), float(cmd[1])
-	    dur = rospy.Duration(1.0)
+	    dur = rospy.Duration(0.1)
 	    rate = rospy.Rate(10)
 	    start = rospy.Time.now()
 
