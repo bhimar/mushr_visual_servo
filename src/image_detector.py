@@ -36,6 +36,7 @@ class DetectorNode:
         frame = self.bridge.imgmsg_to_cv2(data)
         
         # preprocess
+	frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
         blurred = cv2.GaussianBlur(frame, (11, 11), 0)
         hsv = cv2.cvtColor(blurred, cv2.COLOR_BGR2HSV)
         

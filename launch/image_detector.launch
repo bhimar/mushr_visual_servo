@@ -1,9 +1,9 @@
 
 
 <launch>
-	<arg name="im_topic" default="/spoof_car/images" />
+	<arg name="im_topic" default="/car/camera/color/image_raw" />
 	<arg name="out_dir" default="$(find mushr_visual_servo)/detections" />
-	<arg name="box_topic" default="/spoof_car/box" />
+	<arg name="box_topic" default="/image_detector/box" />
 	<arg name="write_images" default="false" />
 
 	<node pkg="mushr_visual_servo" type="image_detector.py" name="image_detector" output="screen">
